@@ -19,39 +19,11 @@ struct TreeNode {
 
 
 
-/// Using inOrder traverse
-/// Store all elements in an vector
-///
-/// Time Complexity: O(n)
-/// Space Complexity: O(n)
 
-
-bool dfs(TreeNode* node, long mn, long mx);
-
-bool isValidBST(TreeNode* root) {
-
-  if(!root) return false;
-  
-  return dfs(root, LONG_MIN, LONG_MAX); 
-
-}
-
-bool dfs(TreeNode* node, long mn, long mx){
-
-    if(!node) return true;
-	if(node->val >= mx || node->val <= mn) return false;
-	return dfs(node->left, mn, node->val) && dfs(node->right, node->val, mx); 
-
-}
-
-void preorder(TreeNode* root){
-
-   if(root){
-      printf("current node (%d) \n", root->val);
-	  if(root->left) preorder(root->left);
-	  if(root->right) preorder(root->right); 
-   }
-
+bool hasPathSum(TreeNode* root, int sum) {
+    if(!root) return false;    
+    if (root->val == sum && root->left == NULL && root->right == NULL) return true;    
+    return  hasPathSum(root->left, sum-root->val) || hasPathSum(root->right, sum-root->val); 
 }
 
 TreeNode* createTree(int a[], int n)
@@ -79,7 +51,13 @@ TreeNode* createTree(int a[], int n)
             }
         }
     }
-    
+    for(int i=0; i<n; i++) {
+        if(tree[i]) {
+            printf("      val, %d \n ", tree[i]->val);
+            if(tree[i]->left) printf(" left, %d \n ", tree[i]->left->val);
+            if(tree[i]->right) printf("             right, %d \n ", tree[i]->right->val);
+        }                
+    }
 	
     return tree[0];
 }
@@ -87,11 +65,11 @@ TreeNode* createTree(int a[], int n)
 
 
 int main() {
-    int b[]={4,2,6,1,7,5,7};
+    int b[]={5,4,8,11,0,13,4,7,2,0,0,0,1};
     TreeNode *root = createTree(b, sizeof(b)/sizeof(int));
 //	preorder(root);
-	if(isValidBST(root)) printf(" is Valide \n");
-	else printf(" is NOT valid \n"); 
+	if(hasPathSum(root, 32)) printf(" has sum \n");
+	else printf(" has no sum \n"); 
 
     return 0;
 }

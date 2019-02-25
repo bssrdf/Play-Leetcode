@@ -19,6 +19,9 @@ Thumbs.db
 #####################
 *.gch
 *.out
+*.exe
+*.obj
+*.o
 Cmake-build-debug/
 Cmake-build-release/
 

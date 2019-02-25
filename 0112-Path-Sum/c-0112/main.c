@@ -1,6 +1,6 @@
-/// Source : https://leetcode.com/problems/validate-binary-search-tree/description/
+/// Source : https://leetcode.com/problems/path-sum/
 /// Author : Bin Zhao
-/// Time   : 2019-02-21
+/// Time   : 2019-02-24
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdbool.h>
